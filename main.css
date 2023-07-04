@@ -1,6 +1,97 @@
-textarea{width: 100%;}
-body{margin: 0;}
-#wrapper{width:100%;height:100vh;margin: 0;background-color: #112233; text-align: center;}
-#left{float:left;width:33%;background-color: aqua; padding: auto;}
-#right{float:right;width:33%;background-color: aqua; padding: auto;}
-#center{display: inline-block; margin:0 auto;width:33%;background-color: aqua; padding: auto;}
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+textarea{
+    resize: none;
+    width: 90%;
+    height: 80%;
+    background-color: #1a1a1d;
+    line-height: 1.5;
+    border-radius: 5px;
+    border: 3px solid #190061;
+    box-shadow: 5px 5px 5px #0c0032;
+    color: #3e07f1;
+    font-size: 15px;
+    outline: none;
+    text-shadow: 2px 2px 2px #0b0c10;
+}
+textarea:focus {
+    border: 3px solid #3500dd;
+    outline: none;
+  }
+body{
+    margin: 0;
+    font-family: "Century Gothic", 'Lato', sans-serif;
+    background-color: #1f2833;
+}
+#wrapper {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100vh;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    z-index: 10;
+    &--top {
+        position: fixed;
+        top: 0;
+    }
+}
+#tab {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    color: #0b0c10;
+    background-color: #0b0c10;
+    letter-spacing: 0.1rem;
+		transition: all 0.5s ease;
+		font-size: 0.8rem;
+	  &:hover {
+			color:#0b0c10;
+      background: #11131a;
+			transition: all 0.5s ease;
+    }
+}
+#tabcenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0.7;
+    color: #0b0c10;
+    background-color: #0b0c10;
+    letter-spacing: 0.1rem;
+		transition: all 0.5s ease;
+		font-size: 0.8rem;
+	  &:hover {
+			color:#0b0c10;
+            background: #0d0e13;
+			transition: all 0.5s ease;
+    }
+}
+button {
+    background-color: #3500dd;
+    border: none;
+    padding: 8px 26px;
+    color: #fff;
+    border-radius: 20px;
+    margin-top: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    white-space: nowrap;
+    &:hover {
+        background-color: #240090;
+        font-size: 22px;
+        animation: parse 1s linear 0s infinite;
+    }
+    font-size: 20px;
+    font-family: "Poppins", sans-serif;
+}
+
+@keyframes parse{
+    30%{color: #17664c;}
+    40%{color: #23f;}
+    65%{color: #17664c;}
+    75%{color: #f24;}
+    100%{color: #17664c;}
+  }
