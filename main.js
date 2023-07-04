@@ -16,13 +16,13 @@ function buttonClick() {
 
 function parseData(e) {
     let ItemStack = e;
-    let id = ItemStack.match(/(minecraft:)\w+/,'')[0];
+    let id = ItemStack.match(/(minecraft:)\w+/,'')[0].replace("minecraft:","");
     let displayRaw = ItemStack.match(/Name:'{"extra":\[[A-Za-z{}"=:_,#0-9 \\]*\]/)[0].replace(/Name:'/, '').slice(0,-1);
     displayRaw = displayRaw.match(/{[A-Za-z":_,#0-9 \\]*}/)
     let displayFormatting;
     let displayColor;
     let loreRaw = ItemStack.match(/Lore:\[[A-Za-z{}'":_,.?!;=#0-9 \[\]\\\-]*'\]/)[0].replace(/Lore:\[/, '').slice(0,-1);
-    loreRaw = loreRaw.match(/\[[A-Za-z{}":_',.?!#0-9 \\\-]*\]/g);
+    loreRaw = loreRaw.match(/\[[A-Za-z{}":_',.=?!#0-9 \\\-]*\]/g);
     let lore = [];
     let text;
     let segmentColor;
