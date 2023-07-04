@@ -16,7 +16,25 @@ textarea{
 textarea:focus {
     border: 3px solid #3500dd;
     outline: none;
-  }
+}
+#name{
+    resize: none;
+    background-color: #1a1a1d;
+    line-height: 1.5;
+    border-radius: 5px;
+    border: 3px solid #190061;
+    box-shadow: 5px 5px 5px #0c0032;
+    color: #3e07f1;
+    font-size: 15px;
+    outline: none;
+    text-shadow: 2px 2px 2px #0b0c10;
+    margin-top: -10px;
+    margin-bottom: 30px;
+}
+#name:focus {
+    border: 3px solid #3500dd;
+    outline: none;
+}
 body{
     margin: 0;
     font-family: "Century Gothic", 'Lato', sans-serif;
@@ -58,6 +76,7 @@ body{
     justify-content: center;
     align-items: center;
     flex: 0.7;
+    flex-direction: column;
     color: #0b0c10;
     background-color: #0b0c10;
     letter-spacing: 0.1rem;
@@ -68,6 +87,18 @@ body{
             background: #0d0e13;
 			transition: all 0.5s ease;
     }
+}
+#chunk {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0;
+}
+#spacer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
 }
 button {
     background-color: #3500dd;
@@ -86,6 +117,17 @@ button {
     }
     font-size: 20px;
     font-family: "Poppins", sans-serif;
+}
+
+p{
+    font-size: 18px;
+    font-family: "Poppins", sans-serif;
+    color: #3500dd;
+}
+a{
+    font-size: 14px;
+    font-family: "Poppins", sans-serif;
+    color: #190061;
 }
 
 @keyframes parse{

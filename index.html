@@ -11,7 +11,17 @@
     <div id="wrapper">
         <div id="tab"><textarea id="NBTField" placeholder="Insert NBT here..."></textarea></div>
         <div id="tabcenter">
-            <button onclick="buttonClick()">Parse that bitch.</button>
+            <div id="spacer"></div>
+            <div id="chunk">
+                <p>Mythic Item ID?</p><a>(optional)</a><br>
+            </div>
+            <div id="chunk">
+                <input type="text" id="name" name="name" maxlength="32">
+            </div>
+            <div id="chunk">
+                <button onclick="buttonClick()">Parse that bitch.</button>
+            </div>
+            <div id="spacer"></div>
         </div>
         <div id="tab"><textarea id="YAMLField" placeholder="Get your YAML here..."></textarea></div>
     </div>

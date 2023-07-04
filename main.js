@@ -1,12 +1,17 @@
 var input = "";
 var NBTField = document.getElementById("NBTField");
 var YAMLField = document.getElementById("YAMLField");
+var nameField = document.getElementById("name");
 
 const ItalicsRegExp = new RegExp('');
 function buttonClick() {
     input = NBTField.value;
     if (!input) return YAMLField.value = "Error! Input is invalid.";
-    parseData(input);
+    try {
+        parseData(input);
+    } catch (error) {
+        YAMLField.value = "Something went wrong. Check your input data?"
+    }
   }
 
 function parseData(e) {
@@ -18,13 +23,15 @@ function parseData(e) {
     let displayColor;
     let loreRaw = ItemStack.match(/Lore:\[[A-Za-z{}'":_,.?!;=#0-9 \[\]\\\-]*'\]/)[0].replace(/Lore:\[/, '').slice(0,-1);
     loreRaw = loreRaw.match(/\[[A-Za-z{}":_',.?!#0-9 \\\-]*\]/g);
-    //still has it console.log(loreRaw)
     let lore = [];
     let text;
     let segmentColor;
     let segres = [];
     let dispres = [];
-    let yaml = "resultingItem:\n" + "  Id: " + id;
+    let MythicID = nameField.value;
+    if (!nameField.value) MythicID = "resultingItem"
+    MythicID = MythicID.replace(" ","_")
+    let yaml = MythicID + ":\n" + "  Id: " + id;
 
     for (var dsegment of displayRaw) {
         displayFormatting = dsegment.match(/"text":[A-Za-z":_,#0-9 \\]+/)[0].replace(/"text":"/, '').slice(0,-1);
@@ -33,7 +40,6 @@ function parseData(e) {
         if(/"underlined":true,/.test(dsegment)) displayFormatting = "<u>" + displayFormatting
         if(/"strikethrough":true,/.test(dsegment)) displayFormatting = "<st>" + displayFormatting
         if(/"obfuscated":true,/.test(dsegment)) displayFormatting = "<obf>" + displayFormatting
-        console.log(dsegment)
         displayColor = dsegment.match(/"color":"[#a-z_0-9]*"/i)[0].replace(/"color":"/, '').slice(0,-1);
         displayFormatting = `<${displayColor}>` + displayFormatting;
         dispres.push(displayFormatting)
@@ -41,10 +47,7 @@ function parseData(e) {
     dispres = "\n  Display: " + dispres.join("")
     yaml = yaml + dispres
 
-    console.log(loreRaw)
-
     for (var line of loreRaw) {
-        console.log(line)
         for (var segment of line.match(/{[A-Za-z":_,'.?!=;#0-9 \\\-]*}/g)) {
             text = segment.match(/"text":[A-Za-z":_,'.?!=;#0-9 \\\-]+/)[0].replace(/"text":"/, '').slice(0,-1)
             if(/"italic":true,/.test(segment)) text = "<i>" + text
@@ -63,5 +66,4 @@ function parseData(e) {
     segres = "\n  Lore:\n" + segres.join("\n")
     yaml = yaml + segres
     YAMLField.value = (yaml)
-    console.log(yaml)
 }
