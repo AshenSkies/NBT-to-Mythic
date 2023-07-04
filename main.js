@@ -42,6 +42,7 @@ function parseData(e) {
         if(/"obfuscated":true,/.test(dsegment)) displayFormatting = "<obf>" + displayFormatting
         displayColor = dsegment.match(/"color":"[#a-z_0-9]*"/i)[0].replace(/"color":"/, '').slice(0,-1);
         displayFormatting = `<${displayColor}>` + displayFormatting;
+        displayFormatting = displayFormatting.replaceAll("\\'","<&sq>");
         dispres.push(displayFormatting)
     }
     dispres = "\n  Display: " + dispres.join("")
@@ -60,6 +61,7 @@ function parseData(e) {
             else segmentColor = "red"
             text = `<${segmentColor}>` + text;
             text = `    - '${text}'`
+            text = text.replaceAll("\\'","<&sq>");
             segres.push(text)
         }
     }
