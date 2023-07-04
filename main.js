@@ -6,7 +6,7 @@ var nameField = document.getElementById("name");
 const ItalicsRegExp = new RegExp('');
 function buttonClick() {
     input = NBTField.value;
-    if (!input) return YAMLField.value = "Error! Input is invalid.";
+    if (!input) return YAMLField.value = "Error! Input is null.";
     try {
         parseData(input);
     } catch (error) {
@@ -30,7 +30,7 @@ function parseData(e) {
     let dispres = [];
     let MythicID = nameField.value;
     if (!nameField.value) MythicID = "resultingItem"
-    MythicID = MythicID.replace(" ","_")
+    MythicID = MythicID.replaceAll(" ","_")
     let yaml = MythicID + ":\n" + "  Id: " + id;
 
     for (var dsegment of displayRaw) {
