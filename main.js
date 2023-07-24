@@ -23,11 +23,13 @@ function parseData(e) {
     let displayColor;
     let loreRaw = ItemStack.match(/Lore:\[[A-Za-z{}'":_,.?!;=#0-9 \[\]\\\-]*'\]/)[0].replace(/Lore:\[/, '').slice(0,-1);
     loreRaw = loreRaw.match(/\[[A-Za-z{}":_',.=?!#0-9 \\\-]*\]/g);
-    let lore = [];
+    let enchantments = ItemStack.match(/Enchantments:\[[A-Za-z{}'":_,.?!;=#0-9 \[\]\\\-]*s}\]/)[0].replace(/Enchantments:\[/, '').slice(0,-1);
+    enchantments = enchantments.match(/\{[A-Za-z":_',0-9\-]*\}/g)
     let text;
     let segmentColor;
     let segres = [];
     let dispres = [];
+    let encres = [];
     let MythicID = nameField.value;
     if (!nameField.value) MythicID = "resultingItem"
     MythicID = MythicID.replaceAll(" ","_")
@@ -65,7 +67,16 @@ function parseData(e) {
             segres.push(text)
         }
     }
+
     segres = "\n  Lore:\n" + segres.join("\n")
     yaml = yaml + segres
+
+    for (var enc of enchantments) {
+        let name = enc.match(/"[a-z_:]*"/)[0].replaceAll('"', '').replace('minecraft:', '').toUpperCase()
+        let level = enc.match(/lvl:[A-Za-z":_0-9\-]*/)[0].replace('lvl:', '').replace('s', '')
+        encres.push(`  - ${name}:${level}`)
+    }
+    encres = "\n  Enchantments:\n" + encres.join("\n")
+    yaml = yaml + encres
     YAMLField.value = (yaml)
 }
